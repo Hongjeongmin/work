@@ -22,24 +22,24 @@ int main()
 	e_end = input.length()-1;
 	
 	E(input,e_start,e_end);
-	cout<<"이상없음"<<endl;
+	cout<<"It's a clear"<<endl;
 	
 }
 
 void E(string input,int e_start,int e_end)
 {
-	//cout<<"E호출"<<endl;
+	//cout<<"E call"<<endl;
 	int count=0;
 	int t_start = e_start;
 	int t_end;
 		if(input[e_start]=='+')
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1);
 	}
 	else if(input[e_end]=='+')
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1); 
 	}
 	
@@ -78,18 +78,18 @@ void E(string input,int e_start,int e_end)
 }
 void T(string input,int t_start,int t_end)
 {
-	//cout<<"T호출"<<endl; 
+	//cout<<"T call"<<endl; 
 	int count = 0;
 	int f_start = t_start;
 	int f_end; 
 	if(input[t_start]=='*')
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1); 
 	}
 	else if(input[t_end]=='*')
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1);
 	}
 	
@@ -127,7 +127,7 @@ void T(string input,int t_start,int t_end)
 }
 void F(string input,int f_start, int f_end)
 {
-	//cout<<"F호출"<<endl;
+	//cout<<"F call"<<endl;
 	string input_f;
 	string c;
 	if(input[f_start]=='(')
@@ -136,7 +136,7 @@ void F(string input,int f_start, int f_end)
 	}
 	else if(input[f_start]==')')
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1); 
 	}
 	else
@@ -152,12 +152,12 @@ void F(string input,int f_start, int f_end)
 }
 void N(string input)
 {
-	//cout<<"N호출"<<endl;
+	//cout<<"N call"<<endl;
 	
 	int len = input.length();
 	if(len == 0)
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1);
 	}
 	
@@ -168,14 +168,14 @@ void N(string input)
 }
 void D(char c)
 {
-	//cout<<"D호출"<<endl;
+	//cout<<"D call"<<endl;
 	if(isdigit(c) == true)
 	{
 		return;
 	}
 	else
 	{
-		cout<<"오류"<<endl;
+		cout<<"error"<<endl;
 		exit(1);
 	}
 }
