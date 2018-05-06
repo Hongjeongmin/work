@@ -98,7 +98,7 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 			data.next->size = data.next->size + data.size;
 			data.next->front = NULL;
 			L.head = data.next;
-			//delete[] data;
+			delete[] &data;
 		}
 		else
 		{
@@ -115,7 +115,7 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 			data.front->size = data.front->size + data.size;
 			data.front->next = NULL;
 			L.tail = data.front;
-			//delete[] data;
+			delete[] &data;
 		}
 		else
 		{
@@ -137,8 +137,8 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				data.address = 0;
 				data.size = MAX;
 				data.process = -1;
-				//delete[] data->front;
-				//delete[] data->next;
+				delete[] data.front;
+				delete[] data.next;
 				data.front = NULL;
 				data.next = NULL;
 
@@ -150,8 +150,8 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				data.next->address = data.front->address;
 				data.next->size = data.front->size + data.size + data.next->size;
 				data.next->front = NULL;
-				//delete[] data->front;
-				//delete[] data;
+				delete[] data.front;
+				delete[] &data;
 				
 
 			}
@@ -161,8 +161,8 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				L.tail = data.front;
 				data.front->size = data.front->size + data.size + data.next->size;
 				data.front->next = NULL;
-				//delete[] data->next;	
-				//delete[] data;
+				delete[] data.next;	
+				delete[] &data;
 					
 				
 
@@ -177,8 +177,8 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				data.process = -1;
 				Z.head->next = &data;
 				Z.tail->front = &data;
-				//delete[] data->front;
-				//delete[] data->next;								
+				delete[] data.front;
+				delete[] data.next;								
 				data.front = Z.head;
 				data.next = Z.tail;							
 				
@@ -195,8 +195,9 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				data.process = -1;
 				data.size = data.front->size + data.size;
 				data.address = data.front->address;
+				delete[] data.front;
 				data.front = NULL;
-				//delete[] data->front;				
+								
 				
 			}
 			else
@@ -208,7 +209,7 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				data.process = -1;
 				data.size = data.front->size + data.size;
 				data.address = data.front->address;
-				//delete[] Z->head->next;
+				delete[] Z.head->next;
 				Z.head->next = &data;
 				data.front = Z.head;					
 				
@@ -226,7 +227,7 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				data.process = -1;
 				data.size = data.size + data.next->size;
 				data.next = NULL;
-				//delete[] data->next;				
+				delete[] data.next;				
 				
 
 			}
@@ -236,9 +237,10 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				Z.tail = data.next->next;
 				data.process = -1;
 				data.size = data.size + data.next->size;
+				delete[] data.next;		
 				data.next = Z.tail;
 				Z.tail->front = &data;						
-				//delete[] data->next;				
+					
 
 
 			}
@@ -250,7 +252,6 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 		}
 
 	}
-	//delete[] Z;
 }
 void Save_Q(Process &data,linkedQ &Q,int &num)//
 {
@@ -284,21 +285,21 @@ void Delete_Q(Buffer &data, linkedQ &Q)
 		//cout << "Delete_Q case 1" << endl;
 		Q.head = NULL;
 		Q.tail = NULL;
-		//delete[] data;
+		delete[] &data;
 	}
 	else if (data.front == NULL && data.next != NULL)
 	{
 	//	cout << "Delete_Q case 2" << endl;
 		Q.head = data.next;
 		data.next->front = NULL;
-		//delete[] data;
+		delete[] &data;
 	}
 	else if (data.front != NULL && data.next == NULL)
 	{
 	//	cout << "Delete_Q case 3" << endl;
 		Q.tail = data.front;		
 		data.front->next = NULL;
-		//delete[] data;
+		delete[] &data;
 	}
 	else
 	{
@@ -307,7 +308,7 @@ void Delete_Q(Buffer &data, linkedQ &Q)
 	//	cout << "Q_data->front" << data->front << endl;
 		data.front->next = data.next;
 		data.next->front = data.front;
-		//delete[] data;
+		delete[] &data;
 	}
 }
 void View_M(linkedList *L)
