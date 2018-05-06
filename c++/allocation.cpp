@@ -226,8 +226,9 @@ void Delete_memory(Memory &data,linkedList &L)// this is delete and sum
 				L.tail = &data;
 				data.process = -1;
 				data.size = data.size + data.next->size;
+				delete[] data.next;	
 				data.next = NULL;
-				delete[] data.next;				
+							
 				
 
 			}
@@ -280,7 +281,7 @@ void Save_Q(Process &data,linkedQ &Q,int &num)//
 void Delete_Q(Buffer &data, linkedQ &Q)
 {
 
-	if ( data.front == NULL && data.next == NULL)//있을수가 없는 경우임;
+	if ( data.front == NULL && data.next == NULL)
 	{
 		//cout << "Delete_Q case 1" << endl;
 		Q.head = NULL;
@@ -399,7 +400,7 @@ int first_fit(Process *process,int &n)
 	//------------first_fit----------
 	for(time;;time++)
 	{
-		//cout <<"---------"<< time <<"--------" <<endl;
+		cout <<"---------"<< time <<"--------" <<endl;
 		//------------------- return_memory------------
 		p = L.head;
 		while (p != NULL)
@@ -408,7 +409,7 @@ int first_fit(Process *process,int &n)
 			if (p->return_time == time && p->process != -1)
 			{
 				//cout << "h-1" << endl;
-				//View_M(&L);
+				View_M(&L);
 				//View_Q(&Q);
 				//cout << "process[" << p->process << "] return_time: " << p->return_time << endl;
 				//cout << "Delete_memory: " << p->process << endl;
@@ -438,7 +439,7 @@ int first_fit(Process *process,int &n)
 				if (q->size <= p->size && p->process == -1)
 				{
 					Creat_memory(process[q->num], *p, L, q->num, time);
-				//	View_M(&L);
+					View_M(&L);
 					if (q->num == n - 1)
 					{
 						p = L.head;
@@ -475,7 +476,7 @@ int first_fit(Process *process,int &n)
 						if (p->size>= process[i].size)//enoght size?
 						{
 							Creat_memory(process[i], *p,L,i,time);
-							//View_M(&L);
+							View_M(&L);
 							//---------------return---------------
 							if (i == n - 1)
 							{
