@@ -29,8 +29,8 @@ typedef struct _L
 {
 	Memory *head;
 }Memory_l;
-Memory memory[1000];
-Memory stored[3500];
+Memory memory[10000];
+Memory stored[10000];
 void view(Memory_l &L)
 {
 	Memory *p;
@@ -451,7 +451,7 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 					}
 					*/
 					
-					time = 5001;
+					time = 10000;
 					p = L.head;
 					
 					while(p != NULL)
@@ -505,7 +505,7 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 				if(stored[i].pid == p->pid && stored[i].page == p->page)
 				{
 					//cout<<"case17"<<endl;
-					p->time = i;
+					//p->time = i;
 					count ++;
 				}
 				if(count == 1) 
