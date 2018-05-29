@@ -30,8 +30,7 @@ typedef struct _L
 	Memory *head;
 }Memory_l;
 Memory memory[1000];
-Memory stored[1000];
-
+Memory stored[3500];
 void view(Memory_l &L)
 {
 	Memory *p;
@@ -39,7 +38,7 @@ void view(Memory_l &L)
 	
 	while(p != NULL)
 	{
-		cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
+	//	cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
 		p = p->next;
 	}
 	cout<<endl;
@@ -119,7 +118,7 @@ void FIFO(int &n,int &stored_end,ofstream &fout)
 			 {
 			 	page_fault++;
 				p = L.head;
-				time = 1001;
+				time = 5001;
 				count = 0;
 				while(p != NULL)
 				{
@@ -143,9 +142,9 @@ void FIFO(int &n,int &stored_end,ofstream &fout)
 						p->page = stored[i].page;
 						p->time = i;
 
-						cout<<"page_fault"<<endl;
-						cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
-						view(L);
+				//		cout<<"page_fault"<<endl;
+				//		cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+				//		view(L);
 						break;
 					}
 					p = p->next;
@@ -155,9 +154,9 @@ void FIFO(int &n,int &stored_end,ofstream &fout)
 			 }
 			 else //3개이면서 이미있을때 
 			 {
-				cout<<"Non page_fault"<<endl;
-				cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
-				view(L);		 	
+			//	cout<<"Non page_fault"<<endl;
+			//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+			//	view(L);		 	
 			 }
 
 		}
@@ -171,7 +170,7 @@ void FIFO(int &n,int &stored_end,ofstream &fout)
 				if(stored[i].pid == p->pid && stored[i].page == p->page)
 				{
 					count ++;
-					p->time = i;
+				//	p->time = i;
 				}
 				if(count == 1) break;
 				p = p->next;
@@ -179,12 +178,12 @@ void FIFO(int &n,int &stored_end,ofstream &fout)
 			if(count == 0)
 			{
 			
-				cout<<"page_fault"<<endl;
-				cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+		//		cout<<"page_fault"<<endl;
+		//		cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
 				Add_m(L,i,num);
 				page_fault ++;
 				num++;
-				view(L);		
+			//	view(L);		
 			}	
 		}
 		
@@ -196,7 +195,7 @@ void FIFO(int &n,int &stored_end,ofstream &fout)
 	while(p != NULL)
 	{
 		fout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
-		cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
+		//cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
 		p = p->next;
 	}
 
@@ -246,7 +245,7 @@ void LRU(int &n,int &stored_end,ofstream &fout)
 			 {
 			 	page_fault++;
 				p = L.head;
-				time = 1001;
+				time = 5001;
 				count = 0;
 				while(p != NULL)
 				{
@@ -270,9 +269,9 @@ void LRU(int &n,int &stored_end,ofstream &fout)
 						p->page = stored[i].page;
 						p->time = i;
 
-						cout<<"page_fault"<<endl;
-						cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
-						view(L);
+					//	cout<<"page_fault"<<endl;
+					//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+						//view(L);
 						break;
 					}
 					p = p->next;
@@ -280,9 +279,9 @@ void LRU(int &n,int &stored_end,ofstream &fout)
 			 }
 			 else //3개이면서 이미있을때 
 			 {
-				cout<<"Non page_fault"<<endl;
-				cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
-				view(L);		 	
+			//	cout<<"Non page_fault"<<endl;
+			//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+			//	view(L);		 	
 			 }
 
 		}
@@ -295,6 +294,7 @@ void LRU(int &n,int &stored_end,ofstream &fout)
 			
 				if(stored[i].pid == p->pid && stored[i].page == p->page)
 				{
+					p->time = i;
 					count ++;
 				}
 				if(count == 1) break;
@@ -303,12 +303,12 @@ void LRU(int &n,int &stored_end,ofstream &fout)
 			if(count == 0)
 			{
 			
-				cout<<"page_fault"<<endl;
-				cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+			//	cout<<"page_fault"<<endl;
+			//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
 				Add_m(L,i,num);
 				page_fault ++;
 				num++;
-				view(L);		
+			//	view(L);		
 			}	
 		}
 		
@@ -320,7 +320,7 @@ void LRU(int &n,int &stored_end,ofstream &fout)
 	while(p != NULL)
 	{
 		fout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
-		cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
+	//	cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
 		p = p->next;
 	}
 }
@@ -359,7 +359,7 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 				//cout<<"case2"<<endl;
 				if(p->pid == stored[i].pid && p->page == stored[i].page)
 				{
-					p->time = i;
+					//p->time = i;
 					count++;
 					break;
 				}
@@ -369,6 +369,7 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 			{
 			 //	cout<<"case3"<<endl;
 			 	page_fault++;
+			 	//cout<<"page_fault"<<endl;
 			 	p = L.head;
 			 	while(p != NULL)
 			 	{
@@ -376,10 +377,11 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 			 		p->lock = 0;
 					p = p->next;	
 				}
-			 	for(int j=i+1;j<=stored_end;j++)
+				count = 0;
+			 	for(int j = i+1;j<stored_end;j++)
 			 	{
 			 		//cout<<"case5"<<endl;
-			 		count = 0;
+			 		
 			 		if(stored[i].pid == stored[j].pid)
 					{
 						//cout<<"case6"<<endl;
@@ -394,8 +396,8 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 								{
 									//cout<<"case9"<<endl;
 									count++;
-									if(count != n-1) break;
 									p->lock = 1;
+									//if(count != n-1) break;
 								}
 							}
 							if(count == n-1) break;
@@ -404,6 +406,7 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 					}
 					if(count == n-1) break;	
 				}
+				//cout<<"count : "<<count<<endl;
 				//cout<<"case10"<<endl;
 				if(count == n-1)
 				{				
@@ -419,9 +422,9 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 								//cout<<"case13"<<endl;
 								p->page = stored[i].page;
 								p->time = i;
-								cout<<"page fault"<<endl;
-								cout<<"지금 들어오는놈 "<<stored[i].pid<<" "<<stored[i].page<<endl;
-								view(L);
+								
+								//cout<<"지금 들어오는놈 "<<stored[i].pid<<" "<<stored[i].page<<endl;
+								//view(L);
 								break;
 							}
 						}
@@ -430,23 +433,25 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 				}
 				else
 				{
-					
+					/*
 					p = L.head;
+					cout<<"lock들어가기전"<<endl;
 					while(p != NULL)
 					{
 						if(p->pid == stored[i].pid && p->lock == 0)
 						{
 							p->page = stored[i].page;
 							p->time = i;
-							cout<<"page_fault"<<endl;
+							cout<<"lock통과"<<endl;
 							cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;									
 							view(L);
 							break;								
 						}
 						p = p->next;
 					}
-					/*
-					time = 1001;
+					*/
+					
+					time = 5001;
 					p = L.head;
 					
 					while(p != NULL)
@@ -469,14 +474,13 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 						{
 							p->page = stored[i].page;
 							p->time = i;
-							cout<<"page_fault"<<endl;
-							cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;									
-							view(L);
+						//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;									
+						//	view(L);
 							break;					
 						}
 						p = p->next;
 					}
-					*/
+					
 					
 				}
 	 			
@@ -484,9 +488,9 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 			 else //3개이면서 이미있을때 
 			 {
 			 	//cout<<"case14"<<endl;
-				cout<<"Non page_fault"<<endl;
-				cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
-				view(L);		 	
+			//	cout<<"Non page_fault"<<endl;
+			//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+			//	view(L);		 	
 			 }
 
 		}
@@ -501,13 +505,14 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 				if(stored[i].pid == p->pid && stored[i].page == p->page)
 				{
 					//cout<<"case17"<<endl;
+					p->time = i;
 					count ++;
 				}
 				if(count == 1) 
 				{
-					cout<<"Non page_fault"<<endl;
-					cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
-					view(L);					
+				//	cout<<"Non page_fault"<<endl;
+				//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+				//	view(L);					
 					break;
 				}
 				p = p->next;
@@ -515,12 +520,12 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 			if(count == 0)
 			{
 				//cout<<"case18"<<endl;
-				cout<<"page_fault"<<endl;
-				cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
+			//	cout<<"page_fault"<<endl;
+			//	cout<<"지금 들어오는 놈: "<<stored[i].pid<<" "<<stored[i].page<<endl;
 				Add_m(L,i,num);
 				page_fault ++;
 				num++;
-				view(L);		
+			//	view(L);		
 			}	
 		}
 		
@@ -532,7 +537,7 @@ void OPT(int &n,int &stored_end,ofstream &fout)
 	while(p != NULL)
 	{
 		fout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
-		cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
+	//	cout<<p->num<<" "<<p->pid<<" "<<p->page<<endl;
 		p = p->next;
 	}
 }
@@ -552,7 +557,7 @@ int main()
 	{
 		fin>> stored[i].pid;
 		fin>> stored[i].page;
-		if(stored[i].pid==-1||stored[i].page==-1)
+		if(stored[i].pid==-1&&stored[i].page==-1)
 		{
 			stored_end = i;
 			break;
@@ -563,8 +568,8 @@ int main()
 	ofstream fout;
 	fout.open("page.out");
 	
-//	FIFO(n,stored_end,fout);
-//	LRU(n,stored_end,fout);
+	FIFO(n,stored_end,fout);
+	LRU(n,stored_end,fout);
 	OPT(n,stored_end,fout);
 	fout.close();
 	
